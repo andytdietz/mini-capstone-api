@@ -18,4 +18,9 @@ class ProductsController < ApplicationController
     @products = Product.where("name LIKE ?", "%Cowboy%")
     render :index
   end
+
+  def product_id
+    @product = Product.find_by(id: params["id"])
+    render :show
+  end
 end
