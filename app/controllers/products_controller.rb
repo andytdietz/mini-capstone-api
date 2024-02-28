@@ -33,4 +33,14 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params["id"])
     render :show
   end
+
+  def create
+    @product = Product.create(
+      name: "Shark Vacuum",
+      price: 200,
+      image_url: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6463/6463068_sd.jpg;maxHeight=640;maxWidth=550",
+      description: "A vacuum that is bloodthirsty"
+    )
+    render :show
+  end
 end
