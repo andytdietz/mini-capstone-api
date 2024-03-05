@@ -17,4 +17,10 @@ class Product < ApplicationRecord
   def total
     total_price = price + tax
   end
+
+  def supplier_info
+    { name: supplier.name,
+      email: supplier.email,
+      phone_number: supplier.phone_number }
+  end
 end
