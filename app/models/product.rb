@@ -3,7 +3,6 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :price, numericality: true
   validates :description, length: { minimum: 20 }
-  # validates :image_url, presence: true
 
   def is_discounted?
     price <= 10
