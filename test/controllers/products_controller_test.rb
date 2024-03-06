@@ -15,9 +15,13 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "Product.count", 1 do
-      post "/products.json", params: { name: "test", price: 10, description: "testing a very very very very long description to make sure I hit the minimum character count", supplier: "Microsoft", images: "www.google.com" }
+      post "/products.json", params: { supplier_id: Supplier.first.id, name: "test", price: 10, description: "testing a very very very very long description to make sure I hit the minimum character count", supplier: "Microsoft", images: "www.google.com" }
+      data = JSON.parse(response.body)
       assert_response 200
+      refute_nil data["id"]
+      assert_equal "testing a very very very very long description to make sure I hit the minimum character count", data["description"]
     end
+
     assert_difference "Product.count", 0 do
       post "/products.json", params: {}
       assert_response 422

@@ -11,8 +11,9 @@ class SuppliersControllerTest < ActionDispatch::IntegrationTest
 
   test "create" do
     assert_difference "Supplier.count", 1 do
-      post "/suppliers.json", params: { name: "test", email: "test@email.com", phone_number: "123456789" }
+      post "/suppliers.json", params: { name: "Updated test", email: "test@email.com", phone_number: "123456789" }
       assert_response 200
+      data = JSON.parse(response.body)
     end
     assert_difference "Supplier.count", 0 do
       post "/suppliers.json", params: {}

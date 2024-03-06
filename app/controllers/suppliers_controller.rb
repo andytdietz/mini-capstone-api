@@ -18,7 +18,7 @@ class SuppliersController < ApplicationController
     if @supplier.valid?
       render :show
     else
-      render json: { errors: @supplier.errors.full_msesages }, status: 422
+      render json: { errors: @supplier.errors.full_messages }, status: 422
     end
   end
 
@@ -32,7 +32,7 @@ class SuppliersController < ApplicationController
     if @supplier.valid?
       render :show
     else
-      render json: { errors: @supplier.errors.full_msesages }, status: 422
+      render json: { errors: @supplier.errors.full_messages }, status: 422
     end
   end
 
