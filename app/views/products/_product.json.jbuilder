@@ -6,4 +6,4 @@ json.description product.description
 json.is_discounted? product.is_discounted?
 json.tax product.tax
 json.total product.total
-json.supplier_name product.supplier.name
+json.supplier product.supplier
