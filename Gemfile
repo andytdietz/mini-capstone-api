@@ -66,3 +66,5 @@ group :test do
   gem "selenium-webdriver"
 end
 gem "tty-table"
+
+gem "seed_dump", "~> 3.2", ">= 3.2.4"

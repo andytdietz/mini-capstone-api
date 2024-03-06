@@ -1,9 +1,12 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Supplier.create!([
+  {name: "Hasbro", email: "help@hasbro.com", phone_number: "1234567"},
+  {name: "Shark", email: "help@shark.com", phone_number: "7654321"}
+])
+Product.create!([
+  {name: "Shark Vacuum", price: "200.0", image_url: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6463/6463068_sd.jpg;maxHeight=640;maxWidth=550", description: "A vacuum that is bloodthirsty", inventory: nil, supplier_id: 2},
+  {name: "Silonn Ice Maker", price: "89.0", image_url: "https://m.media-amazon.com/images/I/61eMsTk4w0L._SX342_.jpg", description: "Fast ice maker!", inventory: nil, supplier_id: 1},
+  {name: "8 Inch Tortilla Press", price: "12.0", image_url: "https://m.media-amazon.com/images/I/61ZQP330XLL.__AC_SY300_SX300_QL70_FMwebp_.jpg", description: "Make your own homemade tortillas with this cast aluminum tortilla press!", inventory: nil, supplier_id: 1},
+  {name: "Computer Monitor", price: "150.0", image_url: "https://m.media-amazon.com/images/I/51OvSvgdx+L._AC_SY300_SX300_.jpg", description: "24 inch full HD IPS monitor with thin bezels and 100Hz refresh rate", inventory: nil, supplier_id: 1},
+  {name: "The Rock Blanket", price: "20.0", image_url: "www.google.png", description: "A very fluffy blanket with Dwayne The Rock Johnson's face on it. Adding more to make this longer", inventory: nil, supplier_id: 1},
+  {name: "cat toy", price: "4.0", image_url: "google.com/cattoy", description: "toy for your cat. your cat will absolultely love this toy, or maybe not.", inventory: nil, supplier_id: 1}
+])
