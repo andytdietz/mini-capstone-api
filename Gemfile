@@ -68,3 +68,5 @@ end
 gem "tty-table"
 
 gem "seed_dump", "~> 3.2", ">= 3.2.4"
+
+gem "rack-cors"
