@@ -2,13 +2,17 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :product
 
+  def subtotal
+    product.price * quantity
+  end
+
   def tax
     tax_rate = 0.09
-    (subtotal * quantity) * tax_rate
+    subtotal * tax_rate
   end
 
   def total
-    total_price = (subtotal * quantity) + tax
+    total_price = subtotal + tax
   end
 end
 
