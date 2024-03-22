@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(
-      user_id: params[:user_id],
       product_id: params[:product_id],
       quantity: params[:quantity],
       subtotal: params[:subtotal],
-      tax: params[:tax],
-      total: params[:total],
     )
     if @order.save
       render :show
@@ -34,8 +31,26 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find_by(id: params["id"])
-    @order.destroy
-    render json: { message: "Order successfully deleted" }
+    @order = current_user.orders.find_by(id: params["id"])
+    if @order
+      @order.destroy
+      render json: { message: "Order successfully deleted" }
+    else
+      render json: { error: "Order not found or unauthorized" }, status: :not_found
+    end
+  end
+
+  def update
+    @order = current_user.orders.find_by(id: params["id"])
+    if @order
+      @order.update(
+        product_id: params["product_id"] || @order.product_id,
+        quantity: params["quantity"] || @order.quantity,
+        subtotal: params["subtotal"] || @order.subtotal,
+      )
+      render :show
+    else
+      render json: { error: "Order not found or unauthorized" }, status: :not_found
+    end
   end
 end
