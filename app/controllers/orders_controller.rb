@@ -1,32 +1,39 @@
 class OrdersController < ApplicationController
   def create
-    @order = current_user.orders.new(
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: params[:subtotal],
-    )
-    if @order.save
-      render :show
+    if current_user
+      @order = current_user.orders.new(
+        product_id: params[:product_id],
+        quantity: params[:quantity],
+      )
+      if @order.save
+        render :show
+      else
+        render json: { errors: @order.errors.full_messages }
+      end
     else
-      render json: { errors: @order.errors.full_messages }
+      render json: { error: "You must be logged in to create an order" }, status: :unauthorized
     end
   end
 
   def show
-    @order = current_user.orders.find_by(id: params["id"])
-    if @order
-      render :show
+    if current_user
+      @order = current_user.orders.find_by(id: params["id"])
+      if @order
+        render :show
+      else
+        render json: { error: "Order not found or unauthorized" }, status: :not_found
+      end
     else
-      render json: { error: "Order not found or unauthorized" }, status: :not_found
+      render json: { error: "Order not found or unauthorized" }, status: :unauthorized
     end
   end
 
   def index
-    @orders = current_user.orders.all
-    if @orders
+    if current_user
+      @orders = current_user.orders.all
       render :index
     else
-      render json: { error: "Order not found or unauthorized" }, status: :not_found
+      render json: { error: "Order not found or unauthorized" }, status: :unauthorized
     end
   end
 
