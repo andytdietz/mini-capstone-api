@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find_by(id: params["id"])
     if @order
       @order.destroy
-      render json: { message: "Order successfully deleted" }
+      render json: { message: "Order deleted" }
     else
       render json: { error: "Order not found or unauthorized" }, status: :not_found
     end
