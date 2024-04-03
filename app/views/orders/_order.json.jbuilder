@@ -1,5 +1,5 @@
 json.id order.id
-json.user_name order.user.name
-json.product order.product.name
-json.quantity order.quantity
+json.user_id order.user_id
+json.subtotal order.subtotal
+json.tax order.tax
 json.total order.total

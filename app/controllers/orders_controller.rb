@@ -2,11 +2,31 @@ class OrdersController < ApplicationController
   before_action :authenticate_user
 
   def create
-    @order = current_user.orders.new(
-      product_id: params[:product_id],
-      quantity: params[:quantity],
+    carted_products = current_user.carted_products.where(status: "carted")
+    subtotal = 0
+    index = 0
+    while index < carted_products.length
+      carted_product = carted_products[index]
+      subtotal += carted_product.product.price * carted_product.quantity
+      index += 1
+    end
+
+    tax = subtotal * 0.09
+    total = subtotal + tax
+
+    @order = Order.new(
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
+      total: total,
     )
     if @order.save
+      index = 0
+      while index < carted_products.length
+        carted_product = carted_products[index]
+        carted_product.update(status: "purchased", order_id: @order.id)
+        index += 1
+      end
       render :show
     else
       render json: { errors: @order.errors.full_messages }

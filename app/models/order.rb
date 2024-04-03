@@ -3,18 +3,18 @@ class Order < ApplicationRecord
   has_many :carted_products
   has_many :products, through: :carted_products
 
-  def subtotal
-    product.price * quantity
-  end
+  # def subtotal
+  #   product.price * quantity
+  # end
 
-  def tax
-    tax_rate = 0.09
-    subtotal * tax_rate
-  end
+  # def tax
+  #   tax_rate = 0.09
+  #   subtotal * tax_rate
+  # end
 
-  def total
-    total_price = subtotal + tax
-  end
+  # def total
+  #   total_price = subtotal + tax
+  # end
 end
 
 # 1 Create "Buy Now" button for each product
