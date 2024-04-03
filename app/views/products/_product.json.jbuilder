@@ -6,4 +6,5 @@ json.is_discounted? product.is_discounted?
 json.tax product.tax
 json.total product.total
 json.supplier product.supplier
+json.categories product.categories
 json.images product.images
